@@ -1,0 +1,16 @@
+Week 11 - Basic Fetch API
+
+Target:
+- ฝึกการใช้ Fetch API และการจัดวางโครงสร้างไฟล์
+
+Content:
+- สร้าง HTML หน้าเว็บเรียบง่ายพร้อมปุ่มควบคุมสำหรับเรียก API แต่ละแบบ (GET, POST, PUT, DELETE)
+- ใช้ Fetch API เรียกข้อมูลจาก JSONPlaceholder ด้วย async/await pattern
+- ทำ error handling ด้วย try-catch และตรวจสอบ response.ok ก่อนแปลงข้อมูล
+- แยกโค้ดเป็นโมดูล: api.js (การเรียก API), main.js (event handling), utils/getElementById.js (helper function)
+- ใช้ ES6 modules (import/export) ในการจัดการ dependencies ระหว่างไฟล์
+
+Reflect:
+- ได้เข้าใจพื้นฐานการใช้ function fetch
+- การ throw error จากการ try catch ที่ไว้ทำ error handling
+- มีความคิดการวางไฟล์และวาง code ให้เป็นระเบียบมากขึ้นเพื่อให้มาจัดการพัฒนาต่อได้ง่ายขึ้น
