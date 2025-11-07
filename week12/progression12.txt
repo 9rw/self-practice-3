@@ -1,0 +1,16 @@
+Week 12 - APIClient Class
+
+Target:
+- Refactor โค้ดให้ใช้ OOP pattern ด้วยการสร้าง APIClient class
+
+Content:
+- สร้าง APIClient class รวม HTTP methods (GET, POST, PUT, DELETE) ไว้ใน class เดียว
+- ใช้ constructor รับ baseURL เพื่อกำหนด API endpoint หลัก
+- สร้าง request() method เป็น core function สำหรับจัดการ fetch และ error handling
+- แต่ละ HTTP method (get, post, put, delete) เรียกใช้ request() พร้อมส่ง options ที่เหมาะสม
+- Refactor api.js ให้ใช้ apiClient instance แทนการเรียก fetch โดยตรง ทำให้โค้ดสั้นและอ่านง่ายขึ้น
+
+Reflect:
+- เข้าใจการใช้ class และ OOP ในการจัดระเบียบโค้ด
+- APIClient ช่วยลด code duplication และทำให้โค้ดดูแลรักษาง่ายขึ้น
+- การแยก concerns ทำให้แก้ไขหรือเพิ่มฟีเจอร์ได้สะดวกกว่า

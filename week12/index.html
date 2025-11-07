@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Refactor with APIClient</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    #output {
+      background: #f4f4f4;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+    }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Refactor with APIClient</h1>
+  
+  <div id="btn-group">
+    <button id="getUser">GET Users</button>
+    <button id="getUserById">GET User #1</button>
+    <button id="createPost">POST Create Post</button>
+    <button id="updatePost">PUT Update Post</button>
+    <button id="deletePost">DELETE Post</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script src="./main.js" type="module"></script>
+</body>
+</html>
