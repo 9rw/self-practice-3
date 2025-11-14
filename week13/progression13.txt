@@ -1,0 +1,17 @@
+Week 13 - Loading States & Better UX
+
+Target:
+- UI/UX เพิ่ม loading states และ disabled buttons
+
+Content:
+- สร้าง LoadingManager class จัดการ loading indicator และการ disable/enable buttons
+- เพิ่ม loading spinner
+- ใช้ try-catch-finally pattern ในทุก API function เพื่อจัดการ loading state
+- Disable ปุ่มทั้งหมดระหว่างรอ response เพื่อป้องกันการกดซ้ำ
+- เพิ่ม CSS transitions และ animations (hover effects, fade-in, button states)
+- ปรับปรุง button styling ให้ดูทันสมัยและมี visual feedback
+
+Reflect:
+- เข้าใจการจัดการ UI state เพื่อให้ user ได้รับ feedback ที่ชัดเจน
+- finally block ช่วยให้แน่ใจว่า loading จะถูกซ่อนไม่ว่าจะสำเร็จหรือเกิด error
+- การ disable buttons ช่วยป้องกัน race condition และ duplicate requests
