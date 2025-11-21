@@ -1,0 +1,19 @@
+Week 14 - Request Interceptors & Advanced Handling
+
+Target:
+- เพิ่ม interceptors, retry logic, timeout และ logging system ใน APIClient
+
+Content:
+- เพิ่ม Request Interceptors สำหรับแก้ไข headers หรือ options ก่อนส่ง request
+- เพิ่ม Response Interceptors สำหรับ transform data หรือเพิ่ม metadata หลังได้ response
+- ใช้ AbortController สร้าง timeout mechanism ป้องกัน request ค้างนาน
+- เพิ่ม Retry Logic ที่ลองส่ง request ซ้อมถ้าล้มเหลว พร้อม exponential backoff
+- สร้างระบบ logging ที่แสดงข้อมูล request/response พร้อม duration ใน console และ UI
+- เพิ่ม Request Log UI แสดง activity log แบบ real-time สำหรับ debugging
+- ใช้ constructor options เพื่อกำหนดค่า timeout, maxRetries, enableLogging
+
+Reflect:
+- เข้าใจ Interceptor Pattern ที่ช่วยแยก cross-cutting concerns ออกจาก business logic
+- Timeout และ Retry ช่วยให้ app มี resilience มากขึ้นเมื่อเจอปัญหา network
+- Logging system ช่วยให้ debug ง่ายขึ้นและเห็นภาพรวมของ API calls
+- การใช้ AbortController เป็นวิธี standard ในการจัดการ timeout ใน modern JavaScript
