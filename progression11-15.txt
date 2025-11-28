@@ -1,0 +1,97 @@
+Week 11 - Basic Fetch API
+
+Target:
+- ฝึกการใช้ Fetch API และการจัดวางโครงสร้างไฟล์
+
+Content:
+- สร้าง HTML หน้าเว็บเรียบง่ายพร้อมปุ่มควบคุมสำหรับเรียก API แต่ละแบบ (GET, POST, PUT, DELETE)
+- ใช้ Fetch API เรียกข้อมูลจาก JSONPlaceholder ด้วย async/await pattern
+- ทำ error handling ด้วย try-catch และตรวจสอบ response.ok ก่อนแปลงข้อมูล
+- แยกโค้ดเป็นโมดูล: api.js (การเรียก API), main.js (event handling), utils/getElementById.js (helper function)
+- ใช้ ES6 modules (import/export) ในการจัดการ dependencies ระหว่างไฟล์
+
+Reflect:
+- ได้เข้าใจพื้นฐานการใช้ function fetch
+- การ throw error จากการ try catch ที่ไว้ทำ error handling
+- มีความคิดการวางไฟล์และวาง code ให้เป็นระเบียบมากขึ้นเพื่อให้มาจัดการพัฒนาต่อได้ง่ายขึ้น
+
+=========================================================================================
+Week 12 - APIClient Class
+
+Target:
+- Refactor โค้ดให้ใช้ OOP pattern ด้วยการสร้าง APIClient class
+
+Content:
+- สร้าง APIClient class รวม HTTP methods (GET, POST, PUT, DELETE) ไว้ใน class เดียว
+- ใช้ constructor รับ baseURL เพื่อกำหนด API endpoint หลัก
+- สร้าง request() method เป็น core function สำหรับจัดการ fetch และ error handling
+- แต่ละ HTTP method (get, post, put, delete) เรียกใช้ request() พร้อมส่ง options ที่เหมาะสม
+- Refactor api.js ให้ใช้ apiClient instance แทนการเรียก fetch โดยตรง ทำให้โค้ดสั้นและอ่านง่ายขึ้น
+
+Reflect:
+- เข้าใจการใช้ class และ OOP ในการจัดระเบียบโค้ด
+- APIClient ช่วยลด code duplication และทำให้โค้ดดูแลรักษาง่ายขึ้น
+- การแยก concerns ทำให้แก้ไขหรือเพิ่มฟีเจอร์ได้สะดวกกว่า
+
+=========================================================================================
+Week 13 - Loading States & Better UX
+
+Target:
+- UI/UX เพิ่ม loading states และ disabled buttons
+
+Content:
+- สร้าง LoadingManager class จัดการ loading indicator และการ disable/enable buttons
+- เพิ่ม loading spinner
+- ใช้ try-catch-finally pattern ในทุก API function เพื่อจัดการ loading state
+- Disable ปุ่มทั้งหมดระหว่างรอ response เพื่อป้องกันการกดซ้ำ
+- เพิ่ม CSS transitions และ animations (hover effects, fade-in, button states)
+- ปรับปรุง button styling ให้ดูทันสมัยและมี visual feedback
+
+Reflect:
+- เข้าใจการจัดการ UI state เพื่อให้ user ได้รับ feedback ที่ชัดเจน
+- finally block ช่วยให้แน่ใจว่า loading จะถูกซ่อนไม่ว่าจะสำเร็จหรือเกิด error
+- การ disable buttons ช่วยป้องกัน race condition และ duplicate requests
+
+=========================================================================================
+Week 14 - Request Interceptors & Advanced Handling
+
+Target:
+- เพิ่ม interceptors, retry logic, timeout และ logging system ใน APIClient
+
+Content:
+- เพิ่ม Request Interceptors สำหรับแก้ไข headers หรือ options ก่อนส่ง request
+- เพิ่ม Response Interceptors สำหรับ transform data หรือเพิ่ม metadata หลังได้ response
+- ใช้ AbortController สร้าง timeout mechanism ป้องกัน request ค้างนาน
+- เพิ่ม Retry Logic ที่ลองส่ง request ซ้อมถ้าล้มเหลว พร้อม exponential backoff
+- สร้างระบบ logging ที่แสดงข้อมูล request/response พร้อม duration ใน console และ UI
+- เพิ่ม Request Log UI แสดง activity log แบบ real-time สำหรับ debugging
+- ใช้ constructor options เพื่อกำหนดค่า timeout, maxRetries, enableLogging
+
+Reflect:
+- เข้าใจ Interceptor Pattern ที่ช่วยแยก cross-cutting concerns ออกจาก business logic
+- Timeout และ Retry ช่วยให้ app มี resilience มากขึ้นเมื่อเจอปัญหา network
+- Logging system ช่วยให้ debug ง่ายขึ้นและเห็นภาพรวมของ API calls
+- การใช้ AbortController เป็นวิธี standard ในการจัดการ timeout ใน modern JavaScript
+
+=========================================================================================
+Week 15 - Caching & Performance Optimization
+
+Target:
+- caching mechanism เพื่อลดการเรียก API ซ้ำและเพิ่มประสิทธิภาพ
+
+Content:
+- สร้าง in-memory cache ใน APIClient โดยใช้ Map เก็บข้อมูล response
+- ตั้งค่า Cache TTL (Time To Live) ที่ 30 วินาที พร้อมตรวจสอบ expiration อัตโนมัติ
+- Cache เฉพาะ GET requests และคืนค่าจาก cache ทันทีถ้ายังไม่หมดอายุ
+- ใช้ Cache Invalidation ลบ cache อัตโนมัติเมื่อมีการ POST/PUT/DELETE
+- แสดง Cache Status ใน UI พร้อมจำนวน entries และเวลาที่เหลือก่อนหมดอายุ
+- เพิ่ม Cache Badge แสดงว่าข้อมูลมาจาก cache หรือ fresh data
+- เพิ่มปุ่ม Clear Cache สำหรับลบ cache ทั้งหมด
+- Log แสดง Cache HIT/MISS เพื่อติดตามการทำงานของ cache
+
+Reflect:
+- เข้าใจ Caching Strategy ที่ช่วยลดภาระ network และเพิ่มความเร็วมากขึ้น
+- Cache TTL ช่วยให้ข้อมูลไม่เก่าเกินไปและยังได้ประโยชน์จาก cache
+- Cache Invalidation สำคัญเพื่อให้ข้อมูลสอดคล้องกันหลังจาก mutation
+- การแสดง cache status ช่วยให้ user เข้าใจว่าข้อมูลมาจากไหน
+- In-memory cache เหมาะกับ session-based caching แต่หายเมื่อ refresh หน้า

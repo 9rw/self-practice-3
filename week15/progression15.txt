@@ -1,0 +1,21 @@
+Week 15 - Caching & Performance Optimization
+
+Target:
+- caching mechanism เพื่อลดการเรียก API ซ้ำและเพิ่มประสิทธิภาพ
+
+Content:
+- สร้าง in-memory cache ใน APIClient โดยใช้ Map เก็บข้อมูล response
+- ตั้งค่า Cache TTL (Time To Live) ที่ 30 วินาที พร้อมตรวจสอบ expiration อัตโนมัติ
+- Cache เฉพาะ GET requests และคืนค่าจาก cache ทันทีถ้ายังไม่หมดอายุ
+- ใช้ Cache Invalidation ลบ cache อัตโนมัติเมื่อมีการ POST/PUT/DELETE
+- แสดง Cache Status ใน UI พร้อมจำนวน entries และเวลาที่เหลือก่อนหมดอายุ
+- เพิ่ม Cache Badge แสดงว่าข้อมูลมาจาก cache หรือ fresh data
+- เพิ่มปุ่ม Clear Cache สำหรับลบ cache ทั้งหมด
+- Log แสดง Cache HIT/MISS เพื่อติดตามการทำงานของ cache
+
+Reflect:
+- เข้าใจ Caching Strategy ที่ช่วยลดภาระ network และเพิ่มความเร็วมากขึ้น
+- Cache TTL ช่วยให้ข้อมูลไม่เก่าเกินไปและยังได้ประโยชน์จาก cache
+- Cache Invalidation สำคัญเพื่อให้ข้อมูลสอดคล้องกันหลังจาก mutation
+- การแสดง cache status ช่วยให้ user เข้าใจว่าข้อมูลมาจากไหน
+- In-memory cache เหมาะกับ session-based caching แต่หายเมื่อ refresh หน้า

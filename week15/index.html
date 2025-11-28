@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Caching & Performance Optimization</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background: #007bff;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    button:hover:not(:disabled) {
+      background: #0056b3;
+      transform: translateY(-2px);
+    }
+    button:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    #loading {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+      font-size: 18px;
+      color: #007bff;
+    }
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #output {
+      background: #f4f4f4;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .success { color: green; }
+    .error { color: red; }
+    #request-log {
+      background: #2d2d2d;
+      color: #f0f0f0;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+    }
+    .log-entry {
+      padding: 5px;
+      margin: 3px 0;
+      border-left: 3px solid #666;
+      padding-left: 10px;
+    }
+    .log-info { border-left-color: #007bff; }
+    .log-success { border-left-color: #28a745; }
+    .log-error { border-left-color: #dc3545; }
+    h2 {
+      margin-top: 30px;
+      color: #333;
+      font-size: 20px;
+    }
+    .cache-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #ffc107;
+      color: #000;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .cache-badge.fresh {
+      background: #28a745;
+      color: white;
+    }
+    #cache-status {
+      background: #e9ecef;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border-left: 4px solid #ffc107;
+    }
+    .cache-controls {
+      margin-top: 10px;
+    }
+    .cache-controls button {
+      background: #6c757d;
+      font-size: 14px;
+      padding: 8px 15px;
+    }
+    .cache-controls button:hover:not(:disabled) {
+      background: #5a6268;
+    }
+  </style>
+</head>
+<body>
+  <h1>Caching & Performance Optimization</h1>
+  
+  <div id="btn-group">
+    <button id="getUser">GET Users</button>
+    <button id="getUserById">GET User #1</button>
+    <button id="createPost">POST Create Post</button>
+    <button id="updatePost">PUT Update Post</button>
+    <button id="deletePost">DELETE Post</button>
+  </div>
+
+  <div class="cache-controls">
+    <button id="clearCache">🗑️ Clear Cache</button>
+  </div>
+
+  <div id="loading">
+    <span class="spinner"></span>
+    <span>Loading...</span>
+  </div>
+
+  <h2>Cache Status</h2>
+  <div id="cache-status">No cache entries</div>
+
+  <h2>Request Log</h2>
+  <div id="request-log"></div>
+
+  <h2>Response</h2>
+  <div id="output"></div>
+
+  <script src="./main.js" type="module"></script>
+</body>
+</html>
